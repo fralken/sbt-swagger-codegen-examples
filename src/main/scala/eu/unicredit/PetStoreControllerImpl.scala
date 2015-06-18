@@ -15,7 +15,7 @@ import play.api.libs.concurrent.Execution.Implicits._
 /*
 
 YOU are in charge of providing this implementation
-*/
+
 trait PetStoreControllerImpl {
 
   def onError(s : String,err: Throwable) =
@@ -92,5 +92,5 @@ swaggerServerAsync := true
   }
 */
 }
-/*
+
 */
