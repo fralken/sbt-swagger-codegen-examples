@@ -1,0 +1,8 @@
+
+GET                 /api/pets/                                                  swagger.codegen.controller.PetStoreController.findPets(limit: Option[Int], tags: Option[List[String]])
+
+POST                /api/pets/                                                  swagger.codegen.controller.PetStoreController.addPet()
+
+DELETE              /api/pets/:id                                               swagger.codegen.controller.PetStoreController.deletePet(id: Long)
+
+GET                 /api/pets/:id                                               swagger.codegen.controller.PetStoreController.findPetById(id: Long)
