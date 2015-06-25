@@ -12,4 +12,8 @@ disablePlugins(PlayLayoutPlugin)
 
 //swaggerServerAsync := true
 
-//(compile in Compile) <<= (compile in Compile) dependsOn (swaggerCleanTask, swaggerCodeGenTask, swaggerPlayServerCodeGenTask, swaggerPlayClientCodeGenTask)
+//(compile in Compile) <<= (compile in Compile) dependsOn (
+//	swaggerPlayServerCodeGenTask.dependsOn(
+//	swaggerPlayClientCodeGenTask.dependsOn(
+//	swaggerCodeGenTask.dependsOn(
+//	swaggerCleanTask))))
