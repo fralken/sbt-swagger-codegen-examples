@@ -8,3 +8,4 @@ src/main/scala-2.11
 .cache
 .settings
 src/main/scala/swagger
+logs
