@@ -30,6 +30,7 @@ import play.api.libs.concurrent.Execution.Implicits._
 
 YOU are in charge of providing this implementation
 */
+/*
 trait PetStoreControllerImpl {
 
   def onError(s : String,err: Throwable) =
@@ -65,7 +66,7 @@ trait PetStoreControllerImpl {
   def findPetByIdImpl(id: Long) = {
     pets.find(_.id == id)
   }
-
+*/
 /*  
 use this code in case of :
 swaggerServerAsync := true
@@ -105,7 +106,6 @@ swaggerServerAsync := true
     pets.find(_.id == id)
   }
 */
-
-}
 /*
+}
 */

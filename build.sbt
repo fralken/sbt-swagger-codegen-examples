@@ -4,7 +4,7 @@ organization := "eu.unicredit"
 
 scalaVersion := "2.11.6"
 
-libraryDependencies += "com.typesafe.play" %% "play-ws" % "2.4.0"
+//libraryDependencies += "com.typesafe.play" %% "play-ws" % "2.4.0"
 
 enablePlugins(PlayScala)
 
