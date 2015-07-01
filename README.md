@@ -6,7 +6,7 @@ the example is provided with a "yaml" file that is copy pasted from swagger "sim
 
 this file is locate into `./src/main/swagger` that is the default directory where the plugin will look for swagger files.
 
-- ```swaggerCodeGen``` and you will see under ```./src/main/scala/swagger/codegen``` ("swagger.codegen" is the default package for generated sources) two new files:
+- `swaggerCodeGen` and you will see under `./src/main/scala/swagger/codegen` ("swagger.codegen" is the default package for generated sources) two new files:
 
 	- Model.scala which contains the case classes for the model described into the swagger file
 	- json/package.scala which contains implicit formats for marshalling and unmarshalling model objects from and to json
