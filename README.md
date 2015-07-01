@@ -14,7 +14,7 @@ this file is locate into `./src/main/swagger` that is the default directory wher
 at this point you usually whant to create a client or a server for this specification and we provide commands for that:
 
 	- `swaggerPlayClientCodeGen` will generate a class under package "swagger.codegen.client" , instatiating this class into any Play 2.4 application let you use the helpful methods to call to a server that follow the provided specification.
-	please note that to compile you need to uncomment in ```build.sbt``` the dependency from ```play-ws```
+	please note that to compile you need to uncomment in `build.sbt` the dependency from `play-ws`
 
 - `swaggerPlayServerCodeGen` will generate a `routes` file under "./src/main/resources/" and a partial Controller implementation in the package "swagger.codegen.controller" that is going to satisfy the routes with all the boilerplate of from/to json and Play specific implmentation
 	
