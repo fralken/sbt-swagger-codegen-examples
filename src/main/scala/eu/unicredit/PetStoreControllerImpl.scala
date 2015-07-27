@@ -53,7 +53,7 @@ trait PetStoreControllerImpl {
   }
     
   def addPetImpl(p: newPet) = {
-    pets :+ p
+    pets :+= pet(p.id.getOrElse(0), p.name, p.tag)
     p
   }
   
@@ -91,7 +91,7 @@ swaggerServerAsync := true
   }
     
   def addPetImpl(p: newPet) = Future {
-    pets :+ p
+    pets :+= pet(p.id.getOrElse(0), p.name, p.tag)
     p
   }
   
