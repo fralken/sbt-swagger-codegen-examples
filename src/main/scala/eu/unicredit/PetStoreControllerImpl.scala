@@ -30,9 +30,11 @@ import play.api.libs.concurrent.Execution.Implicits._
 
 YOU are in charge of providing this implementation
 */
-/*
 trait PetStoreControllerImpl {
 
+// use this code in case of :
+// swaggerServerAsync := false
+/*
   def onError(s : String,err: Throwable) =
     err.getMessage
     
@@ -67,9 +69,10 @@ trait PetStoreControllerImpl {
     pets.find(_.id == id)
   }
 */
+
+// use this code in case of :
+// swaggerServerAsync := true
 /*  
-use this code in case of :
-swaggerServerAsync := true
 
   def onError(s : String,err: Throwable) =
     Future { err.getMessage }
@@ -106,6 +109,4 @@ swaggerServerAsync := true
     pets.find(_.id == id)
   }
 */
-/*
 }
-*/
