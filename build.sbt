@@ -1,19 +1,19 @@
+import eu.unicredit.swagger.generators._
+
 name := "sbt-codegen-example"
 
 organization := "eu.unicredit"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
-//libraryDependencies += "com.typesafe.play" %% "play-ws" % "2.4.0"
+libraryDependencies ++=
+  DefaultModelGenerator.dependencies ++
+  DefaultJsonGenerator.dependencies ++
+  DefaultServerGenerator.dependencies //++
+  //DefaultClientGenerator.dependencies
 
 enablePlugins(PlayScala)
 
 disablePlugins(PlayLayoutPlugin)
 
-//swaggerServerAsync := true
-
-//(compile in Compile) <<= (compile in Compile) dependsOn (
-//	swaggerPlayServerCodeGenTask.dependsOn(
-//	swaggerPlayClientCodeGenTask.dependsOn(
-//	swaggerCodeGenTask.dependsOn(
-//	swaggerCleanTask))))
+//swaggerServerCodeGenClass := new eu.unicredit.swagger.generators.DefaultAsyncServerGenerator()
