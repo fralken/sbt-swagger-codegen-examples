@@ -16,4 +16,6 @@ enablePlugins(PlayScala)
 
 disablePlugins(PlayLayoutPlugin)
 
-//swaggerServerCodeGenClass := new eu.unicredit.swagger.generators.DefaultAsyncServerGenerator()
+swaggerCodeProvidedPackage := "eu.unicredit"
+
+//swaggerServerCodeGenClass := new DefaultAsyncServerGenerator()

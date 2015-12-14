@@ -72,8 +72,7 @@ trait PetStoreControllerImpl {
 
 // use this code in case of :
 // swaggerServerAsync := true
-/*  
-
+/*
   def onError(s : String,err: Throwable) =
     Future { err.getMessage }
     
