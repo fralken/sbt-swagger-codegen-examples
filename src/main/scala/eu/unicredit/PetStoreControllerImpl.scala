@@ -51,12 +51,13 @@ trait PetStoreControllerImpl {
   var pets: MSeq[pet] = MSeq() 
   
   def findPetsImpl(limit: Option[Int], tags: Option[List[String]]) = {
-    pets 
+    pets.toList
   }
     
   def addPetImpl(p: newPet) = {
-    pets :+= pet(p.id.getOrElse(0), p.name, p.tag)
-    p
+    val petToAdd = pet(p.id.getOrElse(0), p.name, p.tag)
+    pets :+= petToAdd
+    petToAdd
   }
   
   def deletePetImpl(id: Long) = {
@@ -66,12 +67,11 @@ trait PetStoreControllerImpl {
   }
   
   def findPetByIdImpl(id: Long) = {
-    pets.find(_.id == id)
+    pets.find(_.id == id).get
   }
 */
-
 // use this code in case of :
-// swaggerServerAsync := true
+// swaggerServerCodeGenClass := new DefaultAsyncServerGenerator()
 /*
   def onError(s : String,err: Throwable) =
     Future { err.getMessage }
@@ -89,23 +89,23 @@ trait PetStoreControllerImpl {
   var pets: MSeq[pet] = MSeq() 
   
   def findPetsImpl(limit: Option[Int], tags: Option[List[String]]) = Future { 
-  	pets
+  	pets.toList
   }
     
   def addPetImpl(p: newPet) = Future {
-    pets :+= pet(p.id.getOrElse(0), p.name, p.tag)
-    p
+    val petToAdd = pet(p.id.getOrElse(0), p.name, p.tag)
+    pets :+= petToAdd
+    petToAdd
   }
   
   def deletePetImpl(id: Long) = Future {
-    
     val found = pets.find(_.id == id).get
     pets = pets.filter(_.id == id)
     found
   }
   
   def findPetByIdImpl(id: Long) = Future {
-    pets.find(_.id == id)
+    pets.find(_.id == id).get
   }
 */
 }

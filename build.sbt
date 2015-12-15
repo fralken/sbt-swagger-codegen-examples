@@ -9,8 +9,8 @@ scalaVersion := "2.11.7"
 libraryDependencies ++=
   DefaultModelGenerator.dependencies ++
   DefaultJsonGenerator.dependencies ++
-  DefaultServerGenerator.dependencies //++
-  //DefaultClientGenerator.dependencies
+  DefaultServerGenerator.dependencies ++
+  DefaultClientGenerator.dependencies
 
 enablePlugins(PlayScala)
 
