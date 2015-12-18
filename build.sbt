@@ -1,34 +1,32 @@
 import eu.unicredit.swagger.generators._
 import eu.unicredit.swagger.dependencies._
 
-name := "sbt-codegen-example"
+lazy val common: sbt.Project.SettingsDefinition = Seq(
+  organization := "eu.unicredit",
+  scalaVersion := "2.11.7",
+  version := "0.0.6-SNAPSHOT",
+  libraryDependencies ++=
+    DefaultModelGenerator.dependencies ++
+    DefaultJsonGenerator.dependencies
+  )
 
-organization := "eu.unicredit"
+lazy val server = project.
+  in(file("server")).
+  settings(common: _*).
+  settings(
+    name := "codegen-server",
+    swaggerCodeProvidedPackage := "eu.unicredit",
+    libraryDependencies ++=
+      DefaultServerGenerator.dependencies
+  ).enablePlugins(PlayScala).disablePlugins(PlayLayoutPlugin)
 
-scalaVersion := "2.11.7"
+lazy val client = project.
+  in(file("client")).
+  settings(common: _*).
+  settings(
+    name := "codegen-client",
+    libraryDependencies ++=
+      DefaultClientGenerator.dependencies
+  ).enablePlugins(PlayScala).disablePlugins(PlayLayoutPlugin)
 
-libraryDependencies ++=
-  DefaultModelGenerator.dependencies ++
-  DefaultJsonGenerator.dependencies ++
-  DefaultServerGenerator.dependencies/* ++
-  DefaultClientGenerator.dependencies*/
-
-enablePlugins(PlayScala)
-
-disablePlugins(PlayLayoutPlugin)
-
-swaggerCodeProvidedPackage := "eu.unicredit"
-
-//swaggerServerCodeGenClass := new DefaultAsyncServerGenerator()
-/*
-swaggerServerCodeGenClass := {
-  class Custom1 extends DefaultAsyncServerGenerator {
-    override def controllerNameFromFileName(fn: String) =
-      objectNameFromFileName(fn, "CustomOne")
-  } 
-
-  new Custom1()
-}
-
-swaggerServerCodeGenClass := new eu.unicredit.Custom2()
-*/
+lazy val root = project.in(file(".")).aggregate(server, client)
