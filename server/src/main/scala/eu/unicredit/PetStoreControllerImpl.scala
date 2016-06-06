@@ -37,12 +37,12 @@ trait PetStoreControllerImpl {
 /*    
   val getJsonBody: Request[AnyContent] => JsValue =
     { request =>
-      (request.body.asJson.getOrElse(
+      request.body.asJson.getOrElse(
         Json.parse(
-          (request.body.asText.getOrElse(request.body.asRaw.map(ba => {
+          request.body.asText.getOrElse(request.body.asRaw.map(ba => {
             val size = ba.size
             new String(ba.asBytes(size).get.map(_.toChar))
-          }).get)))))
+          }).get)))
     }   
 */  
   var pets: MSeq[pet] = MSeq() 
