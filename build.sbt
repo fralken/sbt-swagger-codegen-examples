@@ -1,4 +1,3 @@
-import eu.unicredit.swagger.generators._
 import eu.unicredit.swagger.dependencies._
 
 lazy val common: sbt.Project.SettingsDefinition = Seq(
@@ -16,6 +15,7 @@ lazy val server = project.
   settings(
     name := "codegen-server",
     swaggerCodeProvidedPackage := "eu.unicredit",
+    routesGenerator := StaticRoutesGenerator,
     libraryDependencies ++=
       DefaultServerGenerator.dependencies
   ).enablePlugins(PlayScala).disablePlugins(PlayLayoutPlugin)

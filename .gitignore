@@ -10,3 +10,4 @@ src/main/scala-2.11
 src/main/scala/swagger
 logs
 project/my-extension-plugin/target
+.idea

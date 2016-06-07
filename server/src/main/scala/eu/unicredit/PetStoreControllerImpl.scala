@@ -14,17 +14,9 @@
 */
 package eu.unicredit
 
-import play.api.mvc.{ Request, AnyContent }
-import play.api.libs.json._
-import play.api.mvc.Results._
-
 import swagger.codegen._
 
 import scala.collection.mutable.{Seq => MSeq}
-
-import scala.concurrent.Future
-
-import play.api.libs.concurrent.Execution.Implicits._
 
 /*
 
@@ -34,18 +26,8 @@ trait PetStoreControllerImpl {
 
   def onError(s : String,err: Throwable) =
     err.getMessage
-/*    
-  val getJsonBody: Request[AnyContent] => JsValue =
-    { request =>
-      request.body.asJson.getOrElse(
-        Json.parse(
-          request.body.asText.getOrElse(request.body.asRaw.map(ba => {
-            val size = ba.size
-            new String(ba.asBytes(size).get.map(_.toChar))
-          }).get)))
-    }   
-*/  
-  var pets: MSeq[pet] = MSeq() 
+
+  var pets: MSeq[pet] = MSeq()
   
   def findPetsImpl(limit: Option[Int], tags: Option[List[String]]) = {
     pets.toList
