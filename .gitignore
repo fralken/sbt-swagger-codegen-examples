@@ -7,7 +7,9 @@ src/main/scala-2.11
 .project
 .cache
 .settings
-src/main/scala/swagger
+server/src/main/scala/swagger
+server/src/main/resources/routes
+client/src/main/scala/swagger
 logs
 project/my-extension-plugin/target
 .idea
