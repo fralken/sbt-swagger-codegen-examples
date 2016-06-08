@@ -1,6 +1,6 @@
 import eu.unicredit.swagger.dependencies._
 
-lazy val common: sbt.Project.SettingsDefinition = Seq(
+lazy val common = Seq(
   organization := "eu.unicredit",
   scalaVersion := "2.11.7",
   version := "0.0.6-SNAPSHOT",
@@ -30,3 +30,13 @@ lazy val client = project.
   ).enablePlugins(PlayScala).disablePlugins(PlayLayoutPlugin)
 
 lazy val root = project.in(file(".")).aggregate(server, client)
+
+compile in server <<= (compile in Compile in server).
+  dependsOn(swaggerCodeGenTask in server,
+    swaggerServerCodeGenTask in server)
+
+compile in client <<= (compile in Compile in client).
+  dependsOn(swaggerCodeGenTask in client,
+    swaggerClientCodeGenTask in client)
+
+clean <<= clean.dependsOn(swaggerCleanTask in server, swaggerCleanTask in client)
