@@ -1,19 +1,42 @@
-name := "sbt-codegen-example"
+import eu.unicredit.swagger.dependencies._
 
-organization := "eu.unicredit"
+lazy val common = Seq(
+  organization := "eu.unicredit",
+  scalaVersion := "2.11.7",
+  version := "0.0.6-SNAPSHOT",
+  libraryDependencies ++=
+    DefaultModelGenerator.dependencies ++
+    DefaultJsonGenerator.dependencies
+  )
 
-scalaVersion := "2.11.6"
+lazy val server = project.
+  in(file("server")).
+  settings(common: _*).
+  settings(
+    name := "codegen-server",
+    swaggerCodeProvidedPackage := "eu.unicredit",
+    routesGenerator := StaticRoutesGenerator,
+    libraryDependencies ++=
+      DefaultServerGenerator.dependencies
+  ).enablePlugins(PlayScala).disablePlugins(PlayLayoutPlugin)
 
-//libraryDependencies += "com.typesafe.play" %% "play-ws" % "2.4.0"
+lazy val client = project.
+  in(file("client")).
+  settings(common: _*).
+  settings(
+    name := "codegen-client",
+    libraryDependencies ++=
+      DefaultClientGenerator.dependencies
+  ).enablePlugins(PlayScala).disablePlugins(PlayLayoutPlugin)
 
-enablePlugins(PlayScala)
+lazy val root = project.in(file(".")).aggregate(server, client)
 
-disablePlugins(PlayLayoutPlugin)
+compile in server <<= (compile in Compile in server).
+  dependsOn(swaggerCodeGenTask in server,
+    swaggerServerCodeGenTask in server)
 
-//swaggerServerAsync := true
+compile in client <<= (compile in Compile in client).
+  dependsOn(swaggerCodeGenTask in client,
+    swaggerClientCodeGenTask in client)
 
-//(compile in Compile) <<= (compile in Compile) dependsOn (
-//	swaggerPlayServerCodeGenTask.dependsOn(
-//	swaggerPlayClientCodeGenTask.dependsOn(
-//	swaggerCodeGenTask.dependsOn(
-//	swaggerCleanTask))))
+clean <<= clean.dependsOn(swaggerCleanTask in server, swaggerCleanTask in client)

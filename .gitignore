@@ -1,12 +1,13 @@
 target
 project/project
-project/target
 src/main/scala-2.10
 src/main/scala-2.11
 .classpath
 .project
 .cache
 .settings
-src/main/scala/swagger
-logs
 .idea
+logs
+server/src/main/scala/swagger
+server/src/main/resources/routes
+client/src/main/scala/swagger
