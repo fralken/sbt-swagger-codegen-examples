@@ -9,3 +9,4 @@ src/main/scala-2.11
 .settings
 src/main/scala/swagger
 logs
+.idea
