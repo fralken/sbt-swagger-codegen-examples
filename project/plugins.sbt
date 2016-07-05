@@ -10,7 +10,8 @@ lazy val myExtensionPlugin = project.
     name := "My Extension Plugin",
     sbtPlugin := true,
     libraryDependencies +=
-      "eu.unicredit" %% "sbt-swagger-codegen-lib" % "0.0.6-SNAPSHOT"
+      "eu.unicredit" %% "sbt-swagger-codegen-lib" % "0.0.6-SNAPSHOT",
+    resolvers += Resolver.sonatypeRepo("snapshots")
   )
 
 lazy val root = project.in(file(".")).dependsOn(myExtensionPlugin)
