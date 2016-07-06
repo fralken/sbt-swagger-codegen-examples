@@ -38,3 +38,21 @@ where
 At this point you will be asked from the compiler to provide an implementation of the required trait `PetStoreControllerImpl` that will implement all the business logic methods (other than the default `onError` handler).
 
 For your convenience the `compile` command from the `root` project calls all swagger code generation commands in client and server before compiling. `clean` command also calls `swaggerClean` on both projects.
+
+##How to run
+
+Here are instructions to programmatically check your services.
+
+Open two terminals into the root directory of this project.
+
+In the first run:
+```
+sbt ";server/compile;server/run"
+```
+
+Into the second terminal run:
+```
+sbt ";client/compile;client/run 9001"
+```
+
+Then, to trigger the client run, you should try to open http://localhost:9001 from whatever ```curl``` or the browser and you should check the output generated.
