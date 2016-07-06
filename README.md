@@ -1,7 +1,7 @@
 sbt-swagger-codegen-example
 ---------------------------
 
-This project will show you how to use `sbt-swagger-codegen` plugin. There is a project for the client and a project for the server.
+This project will show you how to use [`sbt-swagger-codegen`](https://github.com/unicredit/sbt-swagger-codegen) plugin. There is a project for the client and a project for the server.
 
 Open a terminal go into this project base dir and type `sbt`.
 
