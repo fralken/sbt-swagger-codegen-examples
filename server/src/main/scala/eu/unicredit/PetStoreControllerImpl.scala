@@ -28,23 +28,23 @@ trait PetStoreControllerImpl {
     err.getMessage
 
   var pets: MSeq[pet] = MSeq()
-  
+
   def findPetsImpl(limit: Option[Int], tags: Option[List[String]]) = {
     pets.toList
   }
-    
+
   def addPetImpl(p: newPet) = {
     val petToAdd = pet(p.id.getOrElse(0), p.name, p.tag)
     pets :+= petToAdd
     petToAdd
   }
-  
+
   def deletePetImpl(id: Long) = {
     val found = pets.find(_.id == id).get
-    pets = pets.filter(_.id == id)
+    pets = pets.filter(_.id != id)
     found
   }
-  
+
   def findPetByIdImpl(id: Long) = {
     pets.find(_.id == id).get
   }
