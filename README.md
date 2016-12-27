@@ -12,7 +12,7 @@ For the `client` project:
 
 - `project client` and then
 
-- `swaggerCodeGen`
+- `swaggerModelCodeGen`
 
 - `swaggerClientCodeGen`
 
@@ -20,24 +20,24 @@ For the `server` project:
 
 - `project server` and then
 
-- `swaggerCodeGen`
+- `swaggerModelCodeGen`
 
 - `swaggerServerCodeGen`
 
 where
 
-- `swaggerCodeGen` (in both client and server) generates under `src/main/scala/swagger/codegen` (`swagger.codegen` is the default package for generated sources) two new files:
+- `swaggerModelCodeGen` (in both client and server) generates under `target/scala-2.11/src_managed/src/main/swagger/model` (`swagger.codegen` is the default package for generated sources) two new files:
 
 	- Model.scala which contains the case classes for the model described into the swagger file
 	- json/package.scala which contains implicit formats for marshalling and unmarshalling model objects from and to json
 
-- `swaggerClientCodeGen` (in `client`) generates a class under package `swagger.codegen.client`, instantiating this class into any Play 2.5 application let you use the helpful methods to call to a server that follow the provided specification.
+- `swaggerClientCodeGen` (in `client`) generates a class under `target/scala-2.11/src_managed/src/main/swagger/client` (default package is `swagger.codegen.client`), instantiating this class into any Play 2.5 application let you use the helpful methods to call to a server that follow the provided specification.
 
-- `swaggerServerCodeGen` (in `server`) generates a `routes` file under `src/main/resources` and a partial Controller implementation in the package `swagger.codegen.controller` that is going to satisfy the routes with all the boilerplate of from/to json and Play 2.5 specific implementation.
+- `swaggerServerCodeGen` (in `server`) generates a `routes` file under `src/main/resources` and a partial Controller implementation under `target/scala-2.11/src_managed/src/main/swagger/server` (default package is `swagger.codegen.controller`) that is going to satisfy the routes with all the boilerplate of from/to json and Play 2.5 specific implementation.
 
 At this point you will be asked from the compiler to provide an implementation of the required trait `PetStoreControllerImpl` that will implement all the business logic methods (other than the default `onError` handler).
 
-For your convenience the `compile` command from the `root` project calls all swagger code generation commands in client and server before compiling. `clean` command also calls `swaggerClean` on both projects.
+The `compile` command calls all swagger code generation commands before compiling. `swaggerClean` cleans the generated code. Also, since it is generated in the `target` folder, `clean` command cleans it, too.
 
 ##How to run
 

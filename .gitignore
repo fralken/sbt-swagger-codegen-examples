@@ -7,7 +7,6 @@ src/main/scala-2.11
 .cache
 .settings
 .idea
+.history
 logs
-server/src/main/scala/swagger
 server/src/main/resources/routes
-client/src/main/scala/swagger

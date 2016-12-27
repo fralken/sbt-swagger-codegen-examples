@@ -3,7 +3,10 @@ import eu.unicredit.swagger.dependencies._
 lazy val common = Seq(
   organization := "eu.unicredit",
   scalaVersion := "2.11.7",
-  version := "0.0.6-SNAPSHOT",
+  version := "0.0.8",
+  scalacOptions ++= Seq(
+    "-feature",
+    "-language:postfixOps"),
   libraryDependencies ++=
     DefaultModelGenerator.dependencies ++
     DefaultJsonGenerator.dependencies
@@ -14,29 +17,27 @@ lazy val server = project.
   settings(common: _*).
   settings(
     name := "codegen-server",
-    swaggerCodeProvidedPackage := "eu.unicredit",
     routesGenerator := StaticRoutesGenerator,
+    swaggerCodeProvidedPackage := "eu.unicredit",
+    swaggerGenerateServer := true,
     libraryDependencies ++=
       DefaultServerGenerator.dependencies
-  ).enablePlugins(PlayScala).disablePlugins(PlayLayoutPlugin)
+  )
+  .enablePlugins(PlayScala)
+  .disablePlugins(PlayLayoutPlugin)
+  .enablePlugins(SwaggerCodegenPlugin)
 
 lazy val client = project.
   in(file("client")).
   settings(common: _*).
   settings(
     name := "codegen-client",
+    swaggerGenerateClient := true,
     libraryDependencies ++=
       DefaultClientGenerator.dependencies
-  ).enablePlugins(PlayScala).disablePlugins(PlayLayoutPlugin)
+  )
+  .enablePlugins(PlayScala)
+  .disablePlugins(PlayLayoutPlugin)
+  .enablePlugins(SwaggerCodegenPlugin)
 
 lazy val root = project.in(file(".")).aggregate(server, client)
-
-compile in server <<= (compile in Compile in server).
-  dependsOn(swaggerCodeGenTask in server,
-    swaggerServerCodeGenTask in server)
-
-compile in client <<= (compile in Compile in client).
-  dependsOn(swaggerCodeGenTask in client,
-    swaggerClientCodeGenTask in client)
-
-clean <<= clean.dependsOn(swaggerCleanTask in server, swaggerCleanTask in client)
