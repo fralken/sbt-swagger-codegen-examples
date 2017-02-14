@@ -19,7 +19,7 @@ object Global extends GlobalSettings {
     val dog = swagger.codegen.newPet(id = Some(1), name = "dog", tag = None)
     val cat = swagger.codegen.newPet(id = Some(2), name = "cat", tag = None)
 
-    println("pets now are "+Await.result(client.findPets(Some(100), None), 30 seconds))
+    println("pets now are "+Await.result(client.findPets(None, Some(100)), 30 seconds))
 
     Await.result(client.addPet(dog), 30 seconds)
     Await.result(client.addPet(cat), 30 seconds)
@@ -27,7 +27,7 @@ object Global extends GlobalSettings {
     println("pet 1 is a "+Await.result(client.findPetById(1), 30 seconds).name)
     println("pet 2 is a "+Await.result(client.findPetById(2), 30 seconds).name)
 
-    println("pets now are "+Await.result(client.findPets(Some(100), None), 30 seconds))
+    println("pets now are "+Await.result(client.findPets(None, Some(100)), 30 seconds))
   }
 
 }

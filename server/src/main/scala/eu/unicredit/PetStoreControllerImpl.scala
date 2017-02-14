@@ -29,7 +29,7 @@ trait PetStoreControllerImpl {
 
   var pets: MSeq[pet] = MSeq()
 
-  def findPetsImpl(limit: Option[Int], tags: Option[List[String]]) = {
+  def findPetsImpl(tags: Option[List[String]], limit: Option[Int]) = {
     pets.toList
   }
 

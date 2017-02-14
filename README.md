@@ -47,7 +47,7 @@ Open two terminals into the root directory of this project.
 
 In the first run:
 ```
-sbt ";server/compile;server/run"
+sbt ";server/swaggerRoutesCodeGen;server/compile;server/run"
 ```
 
 Into the second terminal run:

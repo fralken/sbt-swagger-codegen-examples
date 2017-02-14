@@ -3,7 +3,7 @@ import eu.unicredit.swagger.dependencies._
 lazy val common = Seq(
   organization := "eu.unicredit",
   scalaVersion := "2.11.7",
-  version := "0.0.8",
+  version := "0.0.9",
   scalacOptions ++= Seq(
     "-feature",
     "-language:postfixOps"),
