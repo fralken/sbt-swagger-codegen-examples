@@ -1,4 +1,4 @@
-/* Copyright 2015 UniCredit S.p.A.
+/* Copyright 2017 UniCredit S.p.A.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,38 +14,43 @@
 */
 package eu.unicredit
 
+import javax.inject.Singleton
+
 import swagger.codegen._
 
 import scala.collection.mutable.{Seq => MSeq}
+import scala.concurrent.Future
+import play.api.libs.concurrent.Execution.Implicits._
 
 /*
-
 YOU are in charge of providing this implementation
 */
-trait PetStoreControllerImpl {
+@Singleton
+class PetStoreService {
 
-  def onError(s : String,err: Throwable) =
+  def onError(s : String,err: Throwable) = Future {
     err.getMessage
+  }
 
   var pets: MSeq[pet] = MSeq()
 
-  def findPetsImpl(tags: Option[List[String]], limit: Option[Int]) = {
+  def findPets(tags: Option[List[String]], limit: Option[Int]) = Future {
     pets.toList
   }
 
-  def addPetImpl(p: newPet) = {
+  def addPet(p: newPet) = Future {
     val petToAdd = pet(p.id.getOrElse(0), p.name, p.tag)
     pets :+= petToAdd
     petToAdd
   }
 
-  def deletePetImpl(id: Long) = {
+  def deletePet(id: Long) = Future {
     val found = pets.find(_.id == id).get
     pets = pets.filter(_.id != id)
     found
   }
 
-  def findPetByIdImpl(id: Long) = {
+  def findPetById(id: Long) = Future {
     pets.find(_.id == id).get
   }
 
