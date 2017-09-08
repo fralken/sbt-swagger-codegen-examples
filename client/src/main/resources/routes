@@ -1,0 +1,1 @@
+GET     /       eu.unicredit.Controller.global()
