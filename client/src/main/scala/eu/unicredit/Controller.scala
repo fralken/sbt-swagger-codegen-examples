@@ -16,32 +16,32 @@ package eu.unicredit
 
 import javax.inject.Inject
 
-import play.api.libs.ws.WSClient
+import play.api.libs.json.Json
 import play.api.mvc.Action
 import play.api.mvc.Results._
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
-
 import swagger.codegen._
+import swagger.codegen.client._
+import swagger.codegen.json._
 
-class Controller @Inject()(ws: WSClient) {
+class Controller @Inject()(client: PetStoreClient) {
   def global() = Action(_ => {
-    val client = new swagger.codegen.client.PetStoreClient(ws)("http://localhost:9000")
-
     val dog = newPet(id = Some(1), name = "dog", tag = None)
     val cat = newPet(id = Some(2), name = "cat", tag = None)
 
-    println("pets now are "+Await.result(client.findPets(None, Some(100)), 30 seconds))
+    println("pets now are " + Await.result(client.findPets(None, Some(100)), 30 seconds))
 
     Await.result(client.addPet(dog), 30 seconds)
     Await.result(client.addPet(cat), 30 seconds)
 
-    println("pet 1 is a "+Await.result(client.findPetById(1), 30 seconds).name)
-    println("pet 2 is a "+Await.result(client.findPetById(2), 30 seconds).name)
+    println("pet 1 is a " + Await.result(client.findPetById(1), 30 seconds).name)
+    println("pet 2 is a " + Await.result(client.findPetById(2), 30 seconds).name)
 
-    println("pets now are "+Await.result(client.findPets(None, Some(100)), 30 seconds))
+    val pets = Await.result(client.findPets(None, Some(100)), 30 seconds)
+    println("pets now are " + pets)
 
-    Ok("Ok")
+    Ok(Json.toJson(pets))
   })
 }
