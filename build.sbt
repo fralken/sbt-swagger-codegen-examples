@@ -9,15 +9,15 @@ lazy val common = Seq(
     "-feature",
     "-language:postfixOps"),
   libraryDependencies ++=
-    DefaultModelGenerator.dependencies ++
-    DefaultJsonGenerator.dependencies
+    Dependencies(DefaultModelGenerator.dependencies) ++
+      Dependencies(DefaultJsonGenerator.dependencies)
   )
 
 lazy val commonServer = Seq(
   swaggerCodeProvidedPackage := "eu.unicredit",
   swaggerGenerateServer := true,
   libraryDependencies ++=
-    DefaultServerGenerator.dependencies
+    Dependencies(DefaultServerGenerator.dependencies)
   )
 
 lazy val server = project.
@@ -50,7 +50,7 @@ lazy val client = project.
     name := "codegen-client",
     swaggerGenerateClient := true,
     libraryDependencies ++=
-      DefaultClientGenerator.dependencies
+      Dependencies(DefaultClientGenerator.dependencies)
   )
   .enablePlugins(PlayScala)
   .disablePlugins(PlayLayoutPlugin)

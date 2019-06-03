@@ -1,6 +1,6 @@
 resolvers += Resolver.sonatypeRepo("releases")
 
-addSbtPlugin("eu.unicredit" % "sbt-swagger-codegen" % "0.0.11")
+addSbtPlugin("eu.unicredit" % "sbt-swagger-codegen" % "0.0.12-SNAPSHOT")
 
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.3")
 
@@ -10,7 +10,7 @@ lazy val myExtensionPlugin = project.
     name := "My Extension Plugin",
     sbtPlugin := true,
     libraryDependencies +=
-      "eu.unicredit" %% "sbt-swagger-codegen-lib" % "0.0.11",
+      "eu.unicredit" %% "sbt-swagger-codegen-lib" % "0.0.12-SNAPSHOT",
     resolvers += Resolver.sonatypeRepo("releases")
   )
 
