@@ -13,8 +13,8 @@ class Module(environment: Environment,
   override def configure(): Unit = {
     bind(classOf[StandaloneWSClient]).toProvider(classOf[StandaloneWSClientProvider])
     bind(classOf[PetStoreClientConfig]).toInstance(PetStoreClientConfig(
-      host = configuration.getString("host").getOrElse("localhost"),
-      port = configuration.getInt("port").getOrElse(9000)))
+      host = configuration.getOptional[String]("host").getOrElse("localhost"),
+      port = configuration.getOptional[Int]("port").getOrElse(9000)))
   }
 }
 

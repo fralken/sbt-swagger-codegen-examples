@@ -32,14 +32,14 @@ class PetStoreService {
     err.getMessage
   }
 
-  var pets: MSeq[pet] = MSeq()
+  var pets: MSeq[Pet] = MSeq()
 
   def findPets(tags: Option[List[String]], limit: Option[Int]) = Future {
     pets.toList
   }
 
-  def addPet(p: newPet) = Future {
-    val petToAdd = pet(p.id.getOrElse(0), p.name, p.tag)
+  def addPet(p: NewPet) = Future {
+    val petToAdd = Pet(p.id.getOrElse(0), p.name, p.tag)
     pets :+= petToAdd
     petToAdd
   }

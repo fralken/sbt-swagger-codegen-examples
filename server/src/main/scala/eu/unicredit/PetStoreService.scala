@@ -26,14 +26,14 @@ class PetStoreService {
   def onError(s : String,err: Throwable) =
     err.getMessage
 
-  var pets: MSeq[pet] = MSeq()
+  var pets: MSeq[Pet] = MSeq()
 
-  def findPets(tags: Option[List[String]], limit: Option[Int]) = {
+  def findPets(h1: String, h2: Option[String], tags: Option[List[String]], limit: Option[Int]) = {
     pets.toList
   }
 
-  def addPet(p: newPet) = {
-    val petToAdd = pet(p.id.getOrElse(0), p.name, p.tag)
+  def addPet(p: NewPet) = {
+    val petToAdd = Pet(p.id.getOrElse(0), p.name, p.tag)
     pets :+= petToAdd
     petToAdd
   }

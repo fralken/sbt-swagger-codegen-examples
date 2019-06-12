@@ -2,7 +2,7 @@ resolvers += Resolver.sonatypeRepo("releases")
 
 addSbtPlugin("eu.unicredit" % "sbt-swagger-codegen" % "0.0.12-SNAPSHOT")
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.3")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.7.0")
 
 lazy val myExtensionPlugin = project.
   in(file("my-extension-plugin")).

@@ -28,10 +28,10 @@ import swagger.codegen.json._
 
 class Controller @Inject()(client: PetStoreClient) {
   def global() = Action(_ => {
-    val dog = newPet(id = Some(1), name = "dog", tag = None)
-    val cat = newPet(id = Some(2), name = "cat", tag = None)
+    val dog = NewPet(id = Some(1), name = "dog", tag = None)
+    val cat = NewPet(id = Some(2), name = "cat", tag = None)
 
-    println("pets now are " + Await.result(client.findPets(None, Some(100)), 30 seconds))
+    println("pets now are " + Await.result(client.findPets("test-header-1", None, None, Some(100)), 30 seconds))
 
     Await.result(client.addPet(dog), 30 seconds)
     Await.result(client.addPet(cat), 30 seconds)
@@ -39,7 +39,7 @@ class Controller @Inject()(client: PetStoreClient) {
     println("pet 1 is a " + Await.result(client.findPetById(1), 30 seconds).name)
     println("pet 2 is a " + Await.result(client.findPetById(2), 30 seconds).name)
 
-    val pets = Await.result(client.findPets(None, Some(100)), 30 seconds)
+    val pets = Await.result(client.findPets("test-header-1", Some("test-header-1"), None, Some(100)), 30 seconds)
     println("pets now are " + pets)
 
     Ok(Json.toJson(pets))

@@ -30,7 +30,7 @@ paths:
         - text/xml
         - text/html
       parameters:
-        - name: tags
+        - name: tags-query
           in: query
           description: tags to filter by
           required: false
@@ -44,6 +44,13 @@ paths:
           required: false
           type: integer
           format: int32
+        - name: my-header1
+          in: header
+          required: true
+          type: string
+        - name: my-header2
+          in: header
+          type: string
       responses:
         '200':
           description: pet response
@@ -61,7 +68,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: pet
+        - name: pet-body
           in: body
           description: Pet to add to the store
           required: true
@@ -129,7 +136,7 @@ definitions:
         format: int64
       name:
         type: string
-      tag:
+      tag-pet:
         type: array
         items:
           type: string

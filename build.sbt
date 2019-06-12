@@ -3,8 +3,8 @@ import eu.unicredit.swagger.generators.DefaultAsyncServerGenerator
 
 lazy val common = Seq(
   organization := "eu.unicredit",
-  scalaVersion := "2.11.7",
-  version := "0.0.11",
+  scalaVersion := "2.12.8",
+  version := "0.0.12-SNAPSHOT",
   scalacOptions ++= Seq(
     "-feature",
     "-language:postfixOps"),
@@ -49,7 +49,8 @@ lazy val client = project.
   settings(
     name := "codegen-client",
     swaggerGenerateClient := true,
-    libraryDependencies ++=
+    libraryDependencies ++= 
+      guice +:
       Dependencies(DefaultClientGenerator.dependencies)
   )
   .enablePlugins(PlayScala)
