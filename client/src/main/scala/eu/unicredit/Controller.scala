@@ -15,10 +15,8 @@
 package eu.unicredit
 
 import javax.inject.Inject
-
 import play.api.libs.json.Json
-import play.api.mvc.Action
-import play.api.mvc.Results._
+import play.api.mvc.{AbstractController, ControllerComponents}
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
@@ -26,7 +24,7 @@ import swagger.codegen._
 import swagger.codegen.client._
 import swagger.codegen.json._
 
-class Controller @Inject()(client: PetStoreClient) {
+class Controller @Inject()(client: PetStoreClient, cc: ControllerComponents) extends AbstractController(cc) {
   def global() = Action(_ => {
     val dog = NewPet(id = Some(1), name = "dog", tag = None)
     val cat = NewPet(id = Some(2), name = "cat", tag = None)
