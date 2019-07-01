@@ -14,19 +14,18 @@
 */
 package eu.unicredit
 
-import javax.inject.Singleton
-
+import javax.inject.{Inject, Singleton}
 import swagger.codegen._
 
 import scala.collection.mutable.{Seq => MSeq}
 import scala.concurrent.Future
-import play.api.libs.concurrent.Execution.Implicits._
+import scala.concurrent.ExecutionContext
 
 /*
 YOU are in charge of providing this implementation
 */
 @Singleton
-class PetStoreService {
+class PetStoreService @Inject()(implicit ec: ExecutionContext) {
 
   def onError(s : String,err: Throwable) = Future {
     err.getMessage
@@ -34,7 +33,8 @@ class PetStoreService {
 
   var pets: MSeq[Pet] = MSeq()
 
-  def findPets(tags: Option[List[String]], limit: Option[Int]) = Future {
+  def findPets(h1: String, h2: Option[String], tags: Seq[String], limit: Option[Int]) = Future {
+    println("h1: " + h1 + " h2: " + h2)
     pets.toList
   }
 

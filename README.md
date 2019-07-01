@@ -22,22 +22,18 @@ For the `server` and `serverAsync` projects:
 
 - `swaggerModelCodeGen`
 
-- `swaggerRoutesCodeGen`
-
 - `swaggerServerCodeGen`
 
 where
 
-- `swaggerModelCodeGen` (in both client and server) generates under `target/scala-2.11/src_managed/src/main/swagger/model` (`swagger.codegen` is the default package for generated sources) two new files:
+- `swaggerModelCodeGen` (in both client and server) generates under `target/scala-2.1x/src_managed/src/main/swagger/model` (`swagger.codegen` is the default package for generated sources) two new files:
 
 	- Model.scala which contains the case classes for the model described into the swagger file
 	- json/package.scala which contains implicit formats for marshalling and unmarshalling model objects from and to json
 
-- `swaggerClientCodeGen` (in `client`) generates a class under `target/scala-2.11/src_managed/src/main/swagger/client` (default package is `swagger.codegen.client`), instantiating this class into any Play 2.5 application let you use the helpful methods to call to a server that follow the provided specification.
+- `swaggerClientCodeGen` (in `client`) generates a class under `target/scala-2.1x/src_managed/src/main/swagger/client` (default package is `swagger.codegen`), instantiating this class into any Play 2.7 application let you use the helpful methods to call to a server that follow the provided specification.
 
-- `swaggerRoutesCodeGen` (in `server` and `serverAsync`) generates a `routes` file under `src/main/resources`.
-
-- `swaggerServerCodeGen` (in `server` and `serverAsync`) generates a Controller implementation under `target/scala-2.11/src_managed/src/main/swagger/server` (default package is `swagger.codegen.controller`) that is going to satisfy the routes with all the boilerplate of from/to json and Play 2.5 specific implementation.
+- `swaggerServerCodeGen` (in `server` and `serverAsync`) generates a Controller and a Router implementation under `target/scala-2.1x/src_managed/src/main/swagger/server` (default package is `swagger.codegen`) that is going to satisfy the routes with all the boilerplate of from/to json and Play 2.7 specific implementation.
 
 At this point you will be asked from the compiler to provide an implementation of `PetStoreService` that will implement all the business logic methods (other than the default `onError` handler). It will be dependency injected at runtime in the usual Play Framework pattern.
 
@@ -51,11 +47,11 @@ Open two terminals into the root directory of this project.
 
 In the first run:
 ```
-sbt ";server/swaggerRoutesCodeGen;server/compile;server/run"
+sbt ";server/compile;server/run"
 ```
 or
 ```
-sbt ";serverAsync/swaggerRoutesCodeGen;server/compile;server/run"
+sbt ";server/compile;server/run"
 ```
 
 Into the second terminal run:

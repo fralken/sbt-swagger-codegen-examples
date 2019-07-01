@@ -28,7 +28,8 @@ class PetStoreService {
 
   var pets: MSeq[Pet] = MSeq()
 
-  def findPets(h1: String, h2: Option[String], tags: Option[List[String]], limit: Option[Int]) = {
+  def findPets(h1: String, h2: Option[String], tags: Seq[String], limit: Option[Int]) = {
+    println("h1: " + h1 + " h2: " + h2)
     pets.toList
   }
 

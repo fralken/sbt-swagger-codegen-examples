@@ -17,6 +17,7 @@ lazy val commonServer = Seq(
   swaggerCodeProvidedPackage := "eu.unicredit",
   swaggerGenerateServer := true,
   libraryDependencies ++=
+    guice +:
     Dependencies(DefaultServerGenerator.dependencies)
   )
 

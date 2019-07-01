@@ -21,7 +21,6 @@ import play.api.mvc.{AbstractController, ControllerComponents}
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import swagger.codegen._
-import swagger.codegen.client._
 import swagger.codegen.json._
 
 class Controller @Inject()(client: PetStoreClient, cc: ControllerComponents) extends AbstractController(cc) {
@@ -29,7 +28,7 @@ class Controller @Inject()(client: PetStoreClient, cc: ControllerComponents) ext
     val dog = NewPet(id = Some(1), name = "dog", tag = None)
     val cat = NewPet(id = Some(2), name = "cat", tag = None)
 
-    println("pets now are " + Await.result(client.findPets("test-header-1", None, None, Some(100)), 30 seconds))
+    println("pets now are " + Await.result(client.findPets("test-header-1", None, Nil, Some(100)), 30 seconds))
 
     Await.result(client.addPet(dog), 30 seconds)
     Await.result(client.addPet(cat), 30 seconds)
@@ -37,7 +36,7 @@ class Controller @Inject()(client: PetStoreClient, cc: ControllerComponents) ext
     println("pet 1 is a " + Await.result(client.findPetById(1), 30 seconds).name)
     println("pet 2 is a " + Await.result(client.findPetById(2), 30 seconds).name)
 
-    val pets = Await.result(client.findPets("test-header-1", Some("test-header-1"), None, Some(100)), 30 seconds)
+    val pets = Await.result(client.findPets("test-header-1", Some("test-header-2"), List("tag1", "tag2"), Some(100)), 30 seconds)
     println("pets now are " + pets)
 
     Ok(Json.toJson(pets))
