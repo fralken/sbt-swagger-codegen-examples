@@ -136,7 +136,7 @@ definitions:
         format: int64
       name:
         type: string
-      tag:
+      tag-pet:
         type: array
         items:
           type: string
