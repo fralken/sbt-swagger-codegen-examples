@@ -14,7 +14,7 @@
 */
 package eu.unicredit
 
-import swagger.codegen._
+import swagger.codegen.petstore._
 
 import scala.collection.mutable.{Seq => MSeq}
 

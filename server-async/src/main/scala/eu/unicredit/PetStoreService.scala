@@ -15,7 +15,7 @@
 package eu.unicredit
 
 import javax.inject.{Inject, Singleton}
-import swagger.codegen._
+import swagger.codegen.petstore._
 
 import scala.collection.mutable.{Seq => MSeq}
 import scala.concurrent.Future

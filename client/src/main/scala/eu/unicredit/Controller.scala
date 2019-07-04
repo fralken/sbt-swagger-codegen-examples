@@ -20,8 +20,8 @@ import play.api.mvc.{AbstractController, ControllerComponents}
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
-import swagger.codegen._
-import swagger.codegen.json._
+import swagger.codegen.petstore._
+import swagger.codegen.petstore.json._
 
 class Controller @Inject()(client: PetStoreClient, cc: ControllerComponents) extends AbstractController(cc) {
   def global() = Action(_ => {

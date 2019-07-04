@@ -6,7 +6,7 @@ import com.google.inject.AbstractModule
 import play.api.{Configuration, Environment}
 import play.api.libs.ws.StandaloneWSClient
 import play.api.libs.ws.ahc.StandaloneAhcWSClient
-import swagger.codegen.PetStoreClientConfig
+import swagger.codegen.petstore.PetStoreClientConfig
 
 class Module(environment: Environment,
              configuration: Configuration) extends AbstractModule {
