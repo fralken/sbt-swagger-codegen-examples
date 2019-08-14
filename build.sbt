@@ -4,7 +4,7 @@ import eu.unicredit.swagger.generators.DefaultAsyncServerGenerator
 lazy val common = Seq(
   organization := "eu.unicredit",
   scalaVersion := "2.12.8",
-  version := "0.0.12-SNAPSHOT",
+  version := "0.1.0-SNAPSHOT",
   scalacOptions ++= Seq(
     "-feature",
     "-language:postfixOps"),
