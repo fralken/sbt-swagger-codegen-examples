@@ -51,7 +51,7 @@ sbt ";server/compile;server/run"
 ```
 or
 ```
-sbt ";server/compile;server/run"
+sbt ";serverAsync/compile;serverAsync/run"
 ```
 
 Into the second terminal run:
